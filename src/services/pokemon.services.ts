@@ -3,10 +3,13 @@ import { AxiosPromise } from "axios";
 import { api } from "./api";
 import { blank_api } from "./blank_api";
 import { GetAllPokemonsData } from "@/models/pokemons.service";
+import { PokemonData } from "@/models/pokemons.data";
 
 export const PokemonServices = {
-  getPokemons: (): AxiosPromise<GetAllPokemonsData> => {
-    return api.get("pokemon");
+  getPokemonsWithPagination: (
+    offset: number
+  ): AxiosPromise<GetAllPokemonsData> => {
+    return api.get(`pokemon?limit=20&offset=${offset}`);
   },
 
   getPokemonsByTypes: (type: string): AxiosPromise<unknown> => {
@@ -19,11 +22,13 @@ export const PokemonServices = {
     return api.get(`pokemon/${idOrName}`);
   },
 
-  getNextOrPreviousPage: (url: string): AxiosPromise<unknown> => {
+  getNextOrPreviousPage: (
+    url: string
+  ): AxiosPromise<GetAllPokemonsData> => {
     return blank_api.get(url);
   },
 
-  getPokemonDataByUrl: (url: string): AxiosPromise<unknown> => {
+  getPokemonDataByUrl: (url: string): AxiosPromise<PokemonData> => {
     return blank_api.get(url);
   },
 
