@@ -29,7 +29,7 @@ const Header = (props: Props) => {
   return (
     <S.Container>
       <S.LogoContainer>
-        <img src='/public/pokemon-logo.png' alt='Pokemon Logo' />
+        <img src='/pokemon-logo.png' alt='Pokemon Logo' />
       </S.LogoContainer>
 
       <div style={{ display: "flex", gap: "2rem" }}>
