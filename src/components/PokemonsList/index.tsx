@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Pagination } from "rsuite";
 
 import * as S from "./styles";
@@ -16,10 +16,6 @@ const PokemonsList = ({
   page,
   handleChangePage,
 }: Props) => {
-  // const [activePage, setActivePage] = useState(1);
-
-  // console.log("pokemonsData:", pokemonsData);
-
   return (
     <S.Container>
       <S.ListContainer>

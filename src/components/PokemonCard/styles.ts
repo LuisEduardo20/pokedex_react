@@ -39,14 +39,17 @@ export const PokemonDataContainer = styled.section`
   width: 90%;
 
   p {
+    font-size: 1rem;
     color: white;
+    text-transform: capitalize;
 
     display: flex;
-    gap: 0.5rem;
     flex-direction: column;
     align-items: center;
 
-    text-transform: capitalize;
+    h6 {
+      font-size: 1.5rem;
+    }
   }
 `;
 
@@ -55,6 +58,10 @@ export const TypesContainer = styled.div`
   display: flex;
   justify-content: center;
   gap: 1rem;
+
+  span {
+    color: ${({ theme }) => theme.colors.white.white};
+  }
 `;
 
 export const PokemonType = styled.span<{ type: string }>`

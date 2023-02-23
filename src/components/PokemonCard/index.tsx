@@ -13,22 +13,18 @@ const PokemonCard = ({ pokemonData }: Props) => {
     () => PokemonServices.getPokemonDataByUrl(pokemonData.url)
   );
 
-  // console.log("data?.data:", data?.data);
-  // console.log("pokemonData.url:", pokemonData.url);
-  // console.log("pokemonData:", pokemonData);
-
   return (
     <S.Container types={data?.data.types}>
       <div>
         <img
-          src={data?.data?.sprites?.front_default}
+          src={data?.data?.sprites?.front_default || ""}
           alt='Pokemon sprite'
         />
       </div>
 
       <S.PokemonDataContainer>
         <p>
-          <h6>#{data?.data?.id}</h6> {data?.data?.name}
+          #{data?.data?.id} <h6>{data?.data?.name}</h6>
         </p>
 
         <S.TypesContainer>
