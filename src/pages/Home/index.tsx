@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { useQuery } from "react-query";
 
 import * as S from "./styles";
-import Header from "@/components/Header";
-import PokemonsList from "@/components/PokemonsList";
 import { PokemonServices } from "@/services/pokemon.services";
-import { GetAllPokemonsData } from "@/models/pokemons.service";
+import { Header, PokemonsList } from "@/components";
 
 type Props = {};
 
