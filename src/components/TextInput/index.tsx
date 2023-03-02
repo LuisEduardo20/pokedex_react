@@ -1,22 +1,30 @@
 import React from "react";
-import { Input, InputGroup, Grid, Row, Col } from "rsuite";
+import { Input, InputGroup } from "rsuite";
 import SearchIcon from "@rsuite/icons/Search";
+import { usePokemon } from "@/hooks/usePokemon";
 
 const styles = {
   marginBottom: 10,
 };
 
-const CustomInputGroupWidthButton = ({
+const CustomInputGroupWithButton = ({
   placeholder,
   ...props
-}: any) => (
-  <InputGroup {...props} inside style={styles}>
-    <Input placeholder={placeholder} />
-    <InputGroup.Button>
-      <SearchIcon />
-    </InputGroup.Button>
-  </InputGroup>
-);
+}: any) => {
+  const { setSearchPokemonName } = usePokemon();
+
+  return (
+    <InputGroup {...props} inside style={styles}>
+      <Input
+        placeholder={placeholder}
+        onChange={(text) => setSearchPokemonName(text)}
+      />
+      <InputGroup.Button>
+        <SearchIcon />
+      </InputGroup.Button>
+    </InputGroup>
+  );
+};
 
 type Props = {
   placeholder: string;
@@ -24,10 +32,7 @@ type Props = {
 
 const TextInput = ({ placeholder }: Props) => {
   return (
-    <CustomInputGroupWidthButton
-      size='lg'
-      placeholder={placeholder}
-    />
+    <CustomInputGroupWithButton size='lg' placeholder={placeholder} />
   );
 };
 
