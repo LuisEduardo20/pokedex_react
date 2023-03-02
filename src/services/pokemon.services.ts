@@ -32,7 +32,12 @@ export const PokemonServices = {
     return blank_api.get(url);
   },
 
-  searchPokemon: (pokemonName: string): AxiosPromise<unknown> => {
-    return api.get(`pokemon/${pokemonName}`);
+  searchPokemon: (): AxiosPromise<any> => {
+    return api.get(`pokemon`, {
+      params: {
+        offset: 0,
+        limit: 5000,
+      },
+    });
   },
 };

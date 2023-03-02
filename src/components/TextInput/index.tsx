@@ -2,6 +2,7 @@ import React from "react";
 import { Input, InputGroup } from "rsuite";
 import SearchIcon from "@rsuite/icons/Search";
 import { usePokemon } from "@/hooks/usePokemon";
+import { PokemonServices } from "@/services/pokemon.services";
 
 const styles = {
   marginBottom: 10,
@@ -11,7 +12,25 @@ const CustomInputGroupWithButton = ({
   placeholder,
   ...props
 }: any) => {
-  const { setSearchPokemonName } = usePokemon();
+  const { searchPokemonName, setSearchPokemonName, setPokemonsList } =
+    usePokemon();
+
+  //TODO Fix search pokemon name pagination
+  const handleSearchPokemon = async () => {
+    if (searchPokemonName.length > 0) {
+      const { data } = await PokemonServices.searchPokemon();
+
+      const filteredPokemons = data?.results?.filter((pokemon: any) =>
+        pokemon.name.includes(searchPokemonName)
+      );
+
+      setPokemonsList((oldValue) => ({
+        ...oldValue,
+        count: filteredPokemons.length,
+        results: filteredPokemons.splice(0, 20),
+      }));
+    }
+  };
 
   return (
     <InputGroup {...props} inside style={styles}>
@@ -19,7 +38,8 @@ const CustomInputGroupWithButton = ({
         placeholder={placeholder}
         onChange={(text) => setSearchPokemonName(text)}
       />
-      <InputGroup.Button>
+
+      <InputGroup.Button onClick={handleSearchPokemon}>
         <SearchIcon />
       </InputGroup.Button>
     </InputGroup>
